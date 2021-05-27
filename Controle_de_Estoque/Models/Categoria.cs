@@ -11,7 +11,7 @@ namespace Controle_de_Estoque.Models
         public int IdCategoria { get; set; }
 
         [Display(Name = "Categoria")]
-        public int NomeCategoria { get; set; }
+        public string NomeCategoria { get; set; }
 
         //public List<Produto> Produtos { get; set; }
 

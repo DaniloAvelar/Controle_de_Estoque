@@ -11,4 +11,5 @@ Projeto Controle_de_Estoque
 - Registrando a Conexão no (Startup.cs)
 - Instalando o Pacote de Conexao com MySql (Pomelo EF)
 - Criando o Controller para (Produtos)
+- Criando a View para exibir os produtos
  
