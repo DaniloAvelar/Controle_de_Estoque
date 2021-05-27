@@ -2,9 +2,15 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Produtos</h2>
+<h2>Estoque Atual</h2>
 <p>
-    @Html.ActionLink("Incluir Novo Produto", "Create", "Produtos", new { @class = "btn btn-success" })
+    @*@Html.ActionLink("Incluir Novo Produto", "Create", "Produtos", new { @class = "btn btn-success" })*@
+
+    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Create", "Produtos")'">
+        Incluir Novo Item
+  
+    </button>
+
 </p>
 <table class="table">
     <tr>
@@ -27,6 +33,10 @@
         @Html.ActionLink("Editar", "Edit", new { id = item.IdProduto }) |
         @Html.ActionLink("Detalhes", "Details", new { id = item.IdProduto }) |
         @Html.ActionLink("Deletar", "Delete", new { id = item.IdProduto })
+    </td>
+    <td>
+        <button type="button" class="btn btn-success">Entrada</button>
+        <button type="button" class="btn btn-warning">Saída</button>
     </td>
 </tr>
     }

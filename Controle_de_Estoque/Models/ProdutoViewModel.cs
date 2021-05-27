@@ -26,11 +26,6 @@ namespace Controle_de_Estoque.Models
         public string DescricaoProduto { get; set; }
 
 
-        //[Required(ErrorMessage = "Informe o preço do produto", AllowEmptyStrings = false)]
-        //[Display(Name = "Preço")]
-        //public Decimal Preco { get; set; }
-
-
         [Required(ErrorMessage = "Selecione uma categoria", AllowEmptyStrings = false)]
         [Display(Name = "Categoria")]
         public int CategoriaId { get; set; }

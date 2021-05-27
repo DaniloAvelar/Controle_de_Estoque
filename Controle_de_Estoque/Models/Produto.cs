@@ -22,7 +22,7 @@ namespace Controle_de_Estoque.Models
         public string DescricaoProduto { get; set; }
 
         //[ForeignKey("IdCategoria")]
-        //public int IdCategoria { get; set; }
+        public int IdCategoria { get; set; }
         //public virtual Categoria Categoria { get; set; }
     }
 }
