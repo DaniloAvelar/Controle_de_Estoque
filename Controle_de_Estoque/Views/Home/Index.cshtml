@@ -1,8 +1,33 @@
-﻿@{
+﻿@model IEnumerable<Controle_de_Estoque.Models.Produto>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Estoque atual Vornit</h1>
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
 </div>
+<br />
+<table class="table table-bordered table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Produto</th>
+            <th scope="col" align="center">Qtde</th>
+            @*<th scope="col">Categoria</th>
+            <th scope="col" align="center">Caixa</th>
+            <th scope="col">Descrição</th>*@
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
+                <td align="center">@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+                @*<td>@Html.DisplayFor(modelItem => item.NomeCategoria)</td>
+                <td align="center">CX001@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+                <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>*@
+            </tr>
+        }
+
+    </thead>
+</table>

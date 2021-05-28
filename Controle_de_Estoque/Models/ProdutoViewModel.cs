@@ -27,7 +27,11 @@ namespace Controle_de_Estoque.Models
 
 
         [Required(ErrorMessage = "Selecione uma categoria", AllowEmptyStrings = false)]
-        [Display(Name = "Categoria")]
+        [Display(Name = "IdCategoria")]
         public int CategoriaId { get; set; }
+
+        [Required(ErrorMessage = "Selecione uma categoria", AllowEmptyStrings = false)]
+        [Display(Name = "Categoria")]
+        public string NomeCategoria { get; set; } 
     }
 }
