@@ -13,6 +13,12 @@ Projeto Controle_de_Estoque
 - Criando o Controller para (Produtos)
 - Criando a View para exibir os produtos
 
-- Criação da View para editar Produtos
-- Implementação do método para (Entrada de novos itens)
- 
+- Implementação do método para (Novos itens "Ainda não existentes no BD")
+- Criação de View para Cadastro de Novos itens
+- Implementação do método para (Entrada de itens)
+- Criação da View para entrada de itens
+- Implementação do método para (Saída de itens)
+- Criação da View para Saída de Itens 
+- Implementação do método para (Delete de itens)
+- Criação da View para Delete de Itens 
+

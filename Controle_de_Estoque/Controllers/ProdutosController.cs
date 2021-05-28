@@ -68,7 +68,6 @@ namespace Controle_de_Estoque.Controllers
             return View(produto);
         }
 
-        //IdProduto,NomeProduto,QtdeProduto,DescricaoProduto,IdCategoria
         //POST/Edit/Produto:
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -103,6 +102,83 @@ namespace Controle_de_Estoque.Controllers
             return View(model);
         }
 
+        // GET: Produto/Saida/5
+        [HttpGet("Produtos/Saida/{id}")]
+        public IActionResult Saida(int? id)
+        {
+            if(id == null)
+            {
+                return BadRequest("Requisição Invalida, ID não encontrado");
+            }
+
+            Produto produto = _context.Produtos.Find(id);
+
+            if(produto == null)
+            {
+                return NotFound("Produto não encontrado");
+            }
+
+            ViewBag.Categorias = _context.Categoria;
+            return View(produto);
+        }
+
+        //POST: Produto/saida/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Saida([Bind(include: "IdProduto,NomeProduto,QtdeProduto,DescricaoProduto,IdCategoria")] Produto model)
+        {
+            if (model.IdProduto != 0)
+            {
+                var produto = _context.Produtos.Find(model.IdProduto);
+
+                if (produto == null)
+                {
+                    return BadRequest("Requisição Invalida, ID do Produto não encontrado");
+                }
+
+                if (model.QtdeProduto != 0)
+                {
+                    var prodBD = produto.QtdeProduto;
+                    var prodAdd = model.QtdeProduto;
+
+                    produto.QtdeProduto = prodBD - prodAdd;
+                }
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Categorias = _context.Categoria;
+            return View(model);
+        }
+
+        //Get: Produto/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if(id == null)
+            {
+                return BadRequest("Requisição Invalida, ID do Produto não encontrado");
+            }
+
+            Produto produto = _context.Produtos.Find(id);
+
+            if (produto == null)
+            {
+                return NotFound("Produto não encontrado");
+            }
+            ViewBag.Categoria = _context.Categoria.Find(produto.IdCategoria).NomeCategoria;
+            return View(produto);
+        }
+
+        //POST: Produtos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? id)
+        {
+            Produto produto = _context.Produtos.Find(id);
+            _context.Produtos.Remove(produto);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
     }
 }
