@@ -12,4 +12,7 @@ Projeto Controle_de_Estoque
 - Instalando o Pacote de Conexao com MySql (Pomelo EF)
 - Criando o Controller para (Produtos)
 - Criando a View para exibir os produtos
+
+- Criação da View para editar Produtos
+- Implementação do método para (Entrada de novos itens)
  
