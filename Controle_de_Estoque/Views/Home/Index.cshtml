@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Controle_de_Estoque.Models.Produto>
+@*@model Controle_de_Estoque.Models.ProdCatViewModel*@
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -8,26 +9,54 @@
     @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
 </div>
 <br />
+
 <table class="table table-bordered table-dark">
     <thead>
         <tr>
+            <th scope="col">Categoria</th>
             <th scope="col">Produto</th>
-            <th scope="col" align="center">Qtde</th>
-            @*<th scope="col">Categoria</th>
-            <th scope="col" align="center">Caixa</th>
-            <th scope="col">Descrição</th>*@
+            <th scope="col">Qtde</th>
+            <th scope="col">Descrição</th>
+            @*<th scope="col" align="center">Caixa</th>
+        <th scope="col">Descrição</th>*@
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
-                <td align="center">@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
-                @*<td>@Html.DisplayFor(modelItem => item.NomeCategoria)</td>
-                <td align="center">CX001@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
-                <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>*@
-            </tr>
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
+        <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
+        <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+        <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
+
+        @*<td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.IdProduto }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.IdProduto }) |
+            @Html.ActionLink("Deletar", "Delete", new { id = item.IdProduto })
+        </td>*@
+    </tr>
         }
+
+        @*@foreach (var item in Model)
+            {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
+            <td align="center">@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+            @{
+                var getlist = ViewBag.Categorias as IEnumerable<Controle_de_Estoque.Models.Categoria>;
+
+                foreach (var categ in getlist)
+                {
+                    var idcat = categ.IdCategoria;
+                    <td>@categ.NomeCategoria</td>
+                }
+            }
+
+            <td>@Html.DisplayFor(modelItem => item.NomeCategoria)</td>
+            <td align="center">CX001@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+            <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
+        </tr>
+            }*@
 
     </thead>
 </table>

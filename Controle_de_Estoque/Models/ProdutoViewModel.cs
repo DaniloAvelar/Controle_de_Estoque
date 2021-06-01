@@ -32,6 +32,6 @@ namespace Controle_de_Estoque.Models
 
         [Required(ErrorMessage = "Selecione uma categoria", AllowEmptyStrings = false)]
         [Display(Name = "Categoria")]
-        public string NomeCategoria { get; set; } 
+        public Categoria NomeCategoria { get; set; }
     }
 }

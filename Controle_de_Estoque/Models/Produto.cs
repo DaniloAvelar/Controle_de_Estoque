@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Controle_de_Estoque.Models
@@ -21,8 +22,10 @@ namespace Controle_de_Estoque.Models
         [Required(ErrorMessage = "A descrição do produto é obrigatória", AllowEmptyStrings = false)]
         public string DescricaoProduto { get; set; }
 
-        //[ForeignKey("IdCategoria")]
+        //[ForeignKey("Categoria")]
         public int IdCategoria { get; set; }
-        //public virtual Categoria Categoria { get; set; }
+
+        [ForeignKey("IdCategoria")]
+        public Categoria Categoria { get; set; }
     }
 }

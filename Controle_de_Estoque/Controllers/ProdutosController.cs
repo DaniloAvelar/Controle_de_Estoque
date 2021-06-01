@@ -23,7 +23,7 @@ namespace Controle_de_Estoque.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Categorias = _context.Categoria;
+            ViewBag.Categorias = _context.Categorias;
             var model = new ProdutoViewModel();
             return View(model);
         }
@@ -45,7 +45,7 @@ namespace Controle_de_Estoque.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("index");
             }
-            ViewBag.Categories = _context.Categoria;
+            ViewBag.Categorias = _context.Categorias;
             return View(model);
         }
 
@@ -64,7 +64,7 @@ namespace Controle_de_Estoque.Controllers
                 return NotFound("Produto não encontrado");
             }
 
-            ViewBag.Categorias = _context.Categoria;
+            ViewBag.Categorias = _context.Categorias;
             return View(produto);
         }
 
@@ -98,7 +98,7 @@ namespace Controle_de_Estoque.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Categorias = _context.Categoria;
+            ViewBag.Categorias = _context.Categorias;
             return View(model);
         }
 
@@ -118,7 +118,7 @@ namespace Controle_de_Estoque.Controllers
                 return NotFound("Produto não encontrado");
             }
 
-            ViewBag.Categorias = _context.Categoria;
+            ViewBag.Categorias = _context.Categorias;
             return View(produto);
         }
 
@@ -147,7 +147,7 @@ namespace Controle_de_Estoque.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Categorias = _context.Categoria;
+            ViewBag.Categorias = _context.Categorias;
             return View(model);
         }
 
@@ -165,7 +165,7 @@ namespace Controle_de_Estoque.Controllers
             {
                 return NotFound("Produto não encontrado");
             }
-            ViewBag.Categoria = _context.Categoria.Find(produto.IdCategoria).NomeCategoria;
+            ViewBag.Categoria = _context.Categorias.Find(produto.Categoria.IdCategoria).NomeCategoria;
             return View(produto);
         }
 

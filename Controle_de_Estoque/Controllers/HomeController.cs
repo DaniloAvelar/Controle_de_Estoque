@@ -3,6 +3,8 @@ using Controle_de_Estoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -10,18 +12,17 @@ namespace Controle_de_Estoque.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
         private readonly ControleDeEstoqueDbContext _context;
         public HomeController(ControleDeEstoqueDbContext context)
         {
             _context = context;
         }
+
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
+
 
         public async Task<IActionResult> Index()
         {
