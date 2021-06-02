@@ -29,13 +29,13 @@
             <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
             <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
             @*<td>@Html.DisplayFor(modelItem => item.Preco)</td>*@
-        @*<td>
+        <td>
             @Html.ActionLink("Entrada", "Edit", "Produtos", new { id = item.IdProduto, @class = "btn btn-success", }) |
-            @Html.ActionLink("Detalhes", "Details", new { id = item.IdProduto }) |
+            @*@Html.ActionLink("Detalhes", "Details", new { id = item.IdProduto }) |*@
             @Html.ActionLink("Saída", "Saida", new { @class = "btn btn-success", id = item.IdProduto }) |
             @Html.ActionLink("Deletar", "Delete", new { id = item.IdProduto })
 
-        </td>*@
+        </td>
             @*<td>
                     <button type="button" class="btn btn-success">Entrada</button>
                     <button type="button" class="btn btn-warning">Saída</button>

@@ -12,10 +12,5 @@ namespace Controle_de_Estoque.Data
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Produto>()
-                .HasKey(x => new { x.IdProduto, x.IdCategoria });
-        }
     }
 }

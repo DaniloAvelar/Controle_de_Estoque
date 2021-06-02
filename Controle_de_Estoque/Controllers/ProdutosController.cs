@@ -18,8 +18,8 @@ namespace Controle_de_Estoque.Controllers
         // GET: Produtos
         public async Task<IActionResult> Index()
         {
-            ViewBag.Categorias = _context.Categorias;
-            return View(await _context.Produtos.ToListAsync());
+            //ViewBag.Categorias = _context.Categorias;
+            return View(await _context.Produtos.Include(a => a.Categoria).ToListAsync());
         }
 
         public ActionResult Create()
@@ -59,6 +59,7 @@ namespace Controle_de_Estoque.Controllers
             }
 
             Produto produto = _context.Produtos.Find(id);
+            //Produto produto = _context.Produtos.Find(a => a.Categoria).ToListAsync();
 
             if (produto == null)
             {
