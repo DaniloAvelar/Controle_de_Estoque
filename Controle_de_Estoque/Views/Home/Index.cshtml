@@ -22,15 +22,16 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>@ViewBag.Categorias</td>
             <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
             <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
             <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
             <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
-            <td>
+            @*<td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.IdProduto }) |
                 @Html.ActionLink("Detalhes", "Details", new { id = item.IdProduto }) |
                 @Html.ActionLink("Deletar", "Delete", new { id = item.IdProduto })
-            </td>
+            </td>*@
         </tr>
     }
 </table>

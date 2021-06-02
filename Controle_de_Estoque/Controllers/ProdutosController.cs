@@ -18,6 +18,7 @@ namespace Controle_de_Estoque.Controllers
         // GET: Produtos
         public async Task<IActionResult> Index()
         {
+            ViewBag.Categorias = _context.Categorias;
             return View(await _context.Produtos.ToListAsync());
         }
 
