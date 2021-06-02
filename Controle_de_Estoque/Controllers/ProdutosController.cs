@@ -38,7 +38,7 @@ namespace Controle_de_Estoque.Controllers
                 produto.NomeProduto = model.NomeProduto;
                 produto.QtdeProduto = model.QtdeProduto;
                 produto.DescricaoProduto = model.DescricaoProduto;
-                produto.IdCategoria = model.CategoriaId;
+                produto.IdCategoria = model.IdCategoria;
 
                 var dbProd = _context.Produtos;
                 dbProd.Add(produto);

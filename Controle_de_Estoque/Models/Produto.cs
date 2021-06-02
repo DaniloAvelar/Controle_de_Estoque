@@ -26,6 +26,6 @@ namespace Controle_de_Estoque.Models
         public int IdCategoria { get; set; }
 
         [ForeignKey("IdCategoria")]
-        public Categoria Categoria { get; set; }
+        public virtual Categoria Categoria { get; set; }
     }
 }

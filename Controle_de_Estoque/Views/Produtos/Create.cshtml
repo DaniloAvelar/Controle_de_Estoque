@@ -38,12 +38,12 @@
             </div>
         </div>*@
     <div class="form-group">
-        @Html.LabelFor(m => m.CategoriaId, new { @class = "control-label col-md-2" })
+        @Html.LabelFor(m => m.IdCategoria, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.CategoriaId,
+            @Html.DropDownListFor(m => m.IdCategoria,
                                new SelectList(ViewBag.Categorias, "IdCategoria", "NomeCategoria"),
                                "Escolha a categoria", new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.CategoriaId, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(m => m.IdCategoria, "", new { @class = "text-danger" })
         </div>
     </div>
     @*<div class="form-group">

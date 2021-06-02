@@ -33,15 +33,14 @@ namespace Controle_de_Estoque.Migrations
             modelBuilder.Entity("Controle_de_Estoque.Models.Produto", b =>
                 {
                     b.Property<int>("IdProduto")
-                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdCategoria")
                         .HasColumnType("int");
 
                     b.Property<string>("DescricaoProduto")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("IdCategoria")
-                        .HasColumnType("int");
 
                     b.Property<string>("NomeProduto")
                         .IsRequired()
@@ -50,7 +49,7 @@ namespace Controle_de_Estoque.Migrations
                     b.Property<int>("QtdeProduto")
                         .HasColumnType("int");
 
-                    b.HasKey("IdProduto");
+                    b.HasKey("IdProduto", "IdCategoria");
 
                     b.HasIndex("IdCategoria");
 

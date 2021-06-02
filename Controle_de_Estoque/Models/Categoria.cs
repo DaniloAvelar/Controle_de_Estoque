@@ -13,9 +13,9 @@ namespace Controle_de_Estoque.Models
         [Display(Name = "Categoria")]
         public string NomeCategoria { get; set; }
 
-        public ICollection<Produto> Produtos { get; set; }
+        //public virtual ICollection<Produto> Produtos { get; set; }
 
-        //public virtual Produto Produto { get; set; }
+       public List<Produto> Produtos { get; set; }
 
     }
 }
