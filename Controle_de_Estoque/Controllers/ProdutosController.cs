@@ -172,7 +172,7 @@ namespace Controle_de_Estoque.Controllers
             {
                 return NotFound("Produto não encontrado");
             }
-            ViewBag.Categoria = _context.Categorias.Find(produto.Categoria.IdCategoria).NomeCategoria;
+            //ViewBag.Categoria = _context.Categorias.Find(produto.Categoria.IdCategoria).NomeCategoria;
             return View(produto);
         }
 

@@ -1,9 +1,13 @@
 ﻿@model Controle_de_Estoque.Models.Produto
 @{
-    ViewBag.Title = "Deletar";
+    ViewBag.Title = "Excluir - item";
 }
 <h2>Deletar Item</h2>
-<h3 class="text-danger">Deseja deletar este produto ?</h3>
+<div class="alert alert-danger" role="alert">
+    Vai mesmo me Excluir ?  :(
+</div>
+<br />
+@*<h3 class="text-danger">Deseja deletar este produto ?</h3>*@
 <div class="form-horizontal">
     <div class="form-group">
         @Html.LabelFor(m => m.NomeProduto, new { @class = "control-label col-md-2" })
@@ -31,8 +35,9 @@
         @Html.AntiForgeryToken()
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Deletar Item" class="btn btn-danger" />
-                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-warning" })
+                <input type="submit" value="Excluir Item" class="btn btn-danger" /> |
+                @*@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-warning" })*@
+                <button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Index", "Produtos")'">Cancelar</button>
             </div>
         </div>
     }

@@ -1,10 +1,13 @@
 ﻿@model Controle_de_Estoque.Models.Produto
 @{
-    ViewBag.Title = "Saída de item do estoque";
+    ViewBag.Title = "Saída - item";
 }
 
-<h1>Saída de item do estoque</h1>
-<hr />
+<h1>Retirar item do estoque</h1>
+<div class="alert alert-warning" role="alert">
+    Alguém fez essa solicitação amiguinho ???  ¬¬
+</div>
+<br />
 
 @using (Html.BeginForm())
 {
@@ -25,7 +28,7 @@
                 @Html.DisplayNameFor(m => m.DescricaoProduto)
             </dt>
             <dd class="col-sm-10">
-                @Html.TextBoxFor(m => m.DescricaoProduto, new { @disabled = "disabled" })
+                @Html.TextAreaFor(m => m.DescricaoProduto, new { @disabled = "disabled" })
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(m => m.Categoria.NomeCategoria)
@@ -37,7 +40,12 @@
                 @Html.DisplayNameFor(m => m.QtdeProduto)
             </dt>
             <dd class="col-sm-10">
-                @Html.TextBoxFor(m => m.QtdeProduto)
+                @Html.EditorFor(m => m.QtdeProduto,
+                                    new { @class = "form-control", @placeholder = "Quantidade", @type = "number" })
+                @Html.ValidationMessageFor(m => m.QtdeProduto, "", new { @class = "text-danger" })
+                <button type="button" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="right" title="A Quantidade digitada deve ser maior que '0'" style="border-radius: 50%;">
+                    !
+                </button>
             </dd>
         </dl>
         <div class="form-group">

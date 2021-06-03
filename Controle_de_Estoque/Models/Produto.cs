@@ -15,7 +15,9 @@ namespace Controle_de_Estoque.Models
         public string NomeProduto { get; set; }
 
         [Display(Name = "Qtde")]
-        [Required(ErrorMessage = "A quantidade do produto é obrigatória", AllowEmptyStrings = false)]
+        //[Required(ErrorMessage = "A quantidade do produto é obrigatória", AllowEmptyStrings = false)]
+        [Required(AllowEmptyStrings = false)]
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "A quantidade do produto deve ser maior que '0'")]
         public int QtdeProduto { get; set; }
 
         [Display(Name = "Descrição")]

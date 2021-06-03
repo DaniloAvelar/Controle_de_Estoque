@@ -44,7 +44,7 @@
                 <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
                 <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
                 <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
-                <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
+                <td>@Html.DisplayFor(modelItem => item.DescricaoProduto, new { @maxlength = "8" })</td>
                 <td>
 
                     <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Produtos", new { id = item.IdProduto })'">Entrada</button>   |

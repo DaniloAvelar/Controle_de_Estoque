@@ -1,6 +1,9 @@
 ﻿@model Controle_de_Estoque.Models.ProdutoViewModel
 <h1>Cadastrar Novo Item</h1>
-<hr />
+<div class="alert alert-success" role="alert">
+    Obaaaaa Chegando item novooo :D
+</div>
+<br />
 @using (Html.BeginForm("Create", "Produtos", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -16,16 +19,19 @@
     <div class="form-group">
         @Html.LabelFor(m => m.QtdeProduto, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.QtdeProduto,
-                               new { @class = "form-control", @placeholder = "Nome do produto" })
+            @Html.EditorFor(m => m.QtdeProduto,
+                               new { @class = "form-control", @placeholder = "Quantidade", @type = "number" })
             @Html.ValidationMessageFor(m => m.QtdeProduto, "", new { @class = "text-danger" })
+            <button type="button" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="right" title="A Quantidade digitada deve ser maior que '0'" style="border-radius: 50%;">
+                !
+            </button>
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.DescricaoProduto, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.DescricaoProduto,
-                               new { @class = "form-control", @placeholder = "Descrição do produto" })
+            @Html.TextAreaFor(m => m.DescricaoProduto,
+                               new { @class = "form-control", @placeholder = "Descrição do produto Max. 50 Caracteres", @maxlength = "50" })
             @Html.ValidationMessageFor(m => m.DescricaoProduto, "", new { @class = "text-danger" })
         </div>
     </div>
