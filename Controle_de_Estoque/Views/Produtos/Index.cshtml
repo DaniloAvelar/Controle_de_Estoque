@@ -5,42 +5,59 @@
 <h2>Estoque Atual</h2>
 <p>
     @*@Html.ActionLink("Incluir Novo Produto", "Create", "Produtos", new { @class = "btn btn-success" })*@
+    <div class="container">
+        <div class="row">
+            <div class="col align-self-start">
+                @*DIV Esquerda*@
+                One of three columns
+            </div>
+            <div class="col align-self-center">
+                @*DIV Center*@
+                One of three columns
+            </div>
+            <div class="col align-self-end">
+                @*DIV Direita*@
+                <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Create", "Produtos")'">
+                    Incluir Novo Item
 
-    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Create", "Produtos")'">
-        Incluir Novo Item
-
-    </button>
+                </button>
+            </div>
+        </div>
+    </div>
+    
 
 </p>
-<table class="table">
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Categoria.NomeCategoria)</th>
-        <th>@Html.DisplayNameFor(model => model.NomeProduto) </th>
-        <th>@Html.DisplayNameFor(model => model.QtdeProduto) </th>
-        <th>@Html.DisplayNameFor(model => model.DescricaoProduto)</th>
-        @*<th>@Html.DisplayNameFor(model => model.Preco)</th>*@
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
-            <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
-            <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
-            <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
-            @*<td>@Html.DisplayFor(modelItem => item.Preco)</td>*@
-        <td>
-            @Html.ActionLink("Entrada", "Edit", "Produtos", new { id = item.IdProduto, @class = "btn btn-success", }) |
-            @*@Html.ActionLink("Detalhes", "Details", new { id = item.IdProduto }) |*@
-            @Html.ActionLink("Saída", "Saida", new { @class = "btn btn-success", id = item.IdProduto }) |
-            @Html.ActionLink("Deletar", "Delete", new { id = item.IdProduto })
-
-        </td>
-            @*<td>
-                    <button type="button" class="btn btn-success">Entrada</button>
-                    <button type="button" class="btn btn-warning">Saída</button>
-
-                </td>*@
+            <th scope="col">@Html.DisplayNameFor(model => model.NomeProduto)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.QtdeProduto)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Categoria.NomeCategoria)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.DescricaoProduto)</th>
+            <th scope="col"></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
+                <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+                <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
+                <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
+                <td>
+
+                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Produtos", new { id = item.IdProduto })'">Entrada</button>   |
+                    <button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Saida", "Produtos", new { id = item.IdProduto })'">Saída</button>   |
+                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Produtos", new { id = item.IdProduto })'">Excluir</button>
+
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+
+
+
+

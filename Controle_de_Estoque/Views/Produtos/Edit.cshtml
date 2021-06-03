@@ -3,7 +3,7 @@
     ViewBag.Title = "Adicionar QTDE do item";
 }
 
-<h1>Editar Produto</h1>
+<h1>Adicionar QTDE do item</h1>
 <hr />
 
 @using (Html.BeginForm())
@@ -19,21 +19,21 @@
                 @Html.DisplayNameFor(m => m.NomeProduto)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(m => m.NomeProduto)
+                @Html.TextBoxFor(m => m.NomeProduto, new { @disabled = "disabled" })
             </dd>
 
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(m => m.DescricaoProduto)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(m => m.DescricaoProduto)
+                @Html.TextBoxFor(m => m.DescricaoProduto, new { @disabled = "disabled" })
             </dd>
 
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(m => m.IdCategoria)
+                @Html.DisplayNameFor(m => m.Categoria.NomeCategoria)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(m => m.IdCategoria)
+                @Html.TextBoxFor(m => m.Categoria.NomeCategoria, new { @disabled = "disabled" })
             </dd>
 
             <dt class="col-sm-2">
@@ -41,50 +41,15 @@
             </dt>
             <dd class="col-sm-10">
                 @Html.TextBoxFor(m => m.QtdeProduto)
-            </dd >
-        </dl >
+            </dd>
+        </dl>
 
-
-
-
-
-            @*<div class="form-group">
-        @Html.LabelFor(m => m.NomeProduto, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.NomeProduto, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.NomeProduto, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar alterações" class="btn btn-success" /> |
+                @*@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" }) |*@
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Produtos")'">Cancelar</button>
+            </div>
         </div>
-    </div>*@
-
-                        @*<div class="form-group">
-                    @Html.LabelFor(m => m.DescricaoProduto, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.DescricaoProduto, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.DescricaoProduto, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
-                        @*<div class="form-group">
-                    @Html.LabelFor(m => m.IdCategoria, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.IdCategoria, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.IdCategoria, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
-                        @*<div class="form-group">
-                    @Html.LabelFor(m => m.QtdeProduto, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.QtdeProduto, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.QtdeProduto, "", new { @class = "text-danger" })
-                        </div>
-                </div>*@
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Salvar alterações" class="btn btn-success" />
-                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
-                    </div>
-                </div>
-</div>
+    </div>
 }

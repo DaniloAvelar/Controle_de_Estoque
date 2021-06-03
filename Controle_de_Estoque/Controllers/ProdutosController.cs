@@ -2,7 +2,7 @@
 using Controle_de_Estoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Controle_de_Estoque.Controllers
@@ -59,14 +59,16 @@ namespace Controle_de_Estoque.Controllers
             }
 
             Produto produto = _context.Produtos.Find(id);
-            //Produto produto = _context.Produtos.Find(a => a.Categoria).ToListAsync();
+            Categoria categoria = _context.Categorias.Find(produto.IdCategoria);
 
             if (produto == null)
             {
                 return NotFound("Produto não encontrado");
             }
 
-            ViewBag.Categorias = _context.Categorias;
+            produto.QtdeProduto = 0;
+
+            //ViewBag.Categorias = _context.Categorias;
             return View(produto);
         }
 
@@ -84,7 +86,7 @@ namespace Controle_de_Estoque.Controllers
                     return BadRequest("Requisição Invalida, ID do Produto não encontrado");
                 }
 
-                if(model.QtdeProduto != 0)
+                if(model.QtdeProduto > 0)
                 {
                     var prodBD= produto.QtdeProduto;
                     var prodAdd = model.QtdeProduto;
@@ -114,13 +116,16 @@ namespace Controle_de_Estoque.Controllers
             }
 
             Produto produto = _context.Produtos.Find(id);
+            Categoria categoria = _context.Categorias.Find(produto.IdCategoria);
 
-            if(produto == null)
+            if (produto == null)
             {
                 return NotFound("Produto não encontrado");
             }
 
-            ViewBag.Categorias = _context.Categorias;
+            produto.QtdeProduto = 0;
+
+            //ViewBag.Categorias = _context.Categorias;
             return View(produto);
         }
 
@@ -138,7 +143,7 @@ namespace Controle_de_Estoque.Controllers
                     return BadRequest("Requisição Invalida, ID do Produto não encontrado");
                 }
 
-                if (model.QtdeProduto != 0)
+                if (model.QtdeProduto > 0)
                 {
                     var prodBD = produto.QtdeProduto;
                     var prodAdd = model.QtdeProduto;
