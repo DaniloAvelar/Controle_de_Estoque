@@ -34,25 +34,27 @@
             <th scope="col">@Html.DisplayNameFor(model => model.QtdeProduto)</th>
             <th scope="col">@Html.DisplayNameFor(model => model.Categoria.NomeCategoria)</th>
             <th scope="col">@Html.DisplayNameFor(model => model.DescricaoProduto)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Caixa)</th>
             <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
-                <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
-                <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
-                <td>@Html.DisplayFor(modelItem => item.DescricaoProduto, new { @maxlength = "8" })</td>
-                <td>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
+            <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+            <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
+            <td>@Html.DisplayFor(modelItem => item.DescricaoProduto, new { @maxlength = "8" })</td>
+            <td>@Html.DisplayFor(modelItem => item.Caixa)</td>
+            <td align="right">
 
-                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Produtos", new { id = item.IdProduto })'">Entrada</button>   |
-                    <button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Saida", "Produtos", new { id = item.IdProduto })'">Saída</button>   |
-                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Produtos", new { id = item.IdProduto })'">Excluir</button>
+                <button type="button" class="btn btn-success btn-sm" onclick="location.href='@Url.Action("Edit", "Produtos", new { id = item.IdProduto })'">Entrada</button>   |
+                <button type="button" class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("Saida", "Produtos", new { id = item.IdProduto })'">Saída</button>   |
+                <button type="button" class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", "Produtos", new { id = item.IdProduto })'">Excluir</button>
 
-                </td>
-            </tr>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

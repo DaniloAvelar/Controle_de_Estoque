@@ -58,7 +58,8 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Salvar Produto" class="btn btn-success" />
-                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Produtos")'">Cancelar</button>
+                @*@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })*@
             </div>
         </div>
     </div>
