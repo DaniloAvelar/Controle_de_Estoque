@@ -22,3 +22,7 @@ Projeto Controle_de_Estoque
 - Implementação do método para (Delete de itens)
 - Criação da View para Delete de Itens 
 
+- Criação do Campo "Caixa" no Model (Produto), identificador de onde o produto se encontra
+- Criação do método de calculo e geração de Nº da Caixa automaticamente, seguindo um sequencial
+- Criação de alerta para impressão da etiqueta na view (Create)
+

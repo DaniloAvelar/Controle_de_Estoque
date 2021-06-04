@@ -26,6 +26,29 @@ namespace Controle_de_Estoque.Controllers
         {
             ViewBag.Categorias = _context.Categorias;
             var model = new ProdutoViewModel();
+
+            // Sequencial Nº Caixa Arquivo
+            var maiorNumero = _context.Produtos.Max(c => c.Caixa);
+            var idCaixa = 22000;
+            var nCaixa = 0;
+
+            if (maiorNumero == 0)
+            {
+                idCaixa++;
+                nCaixa = idCaixa;
+            }
+            else
+            {
+                var diferenca = maiorNumero - idCaixa;
+                diferenca++;
+                nCaixa = idCaixa + diferenca;
+            }
+
+            model.Caixa = nCaixa;
+            ViewBag.nCaixa = nCaixa;
+
+            // ==========================
+
             return View(model);
         }
         // POST CREATE Produto:
@@ -40,6 +63,7 @@ namespace Controle_de_Estoque.Controllers
                 produto.QtdeProduto = model.QtdeProduto;
                 produto.DescricaoProduto = model.DescricaoProduto;
                 produto.IdCategoria = model.IdCategoria;
+                produto.Caixa = model.Caixa;
 
                 var dbProd = _context.Produtos;
                 dbProd.Add(produto);

@@ -26,6 +26,10 @@ namespace Controle_de_Estoque.Models
         [Display(Name = "Descrição do Produto")]
         public string DescricaoProduto { get; set; }
 
+        [Display(Name = "Caixa")]
+        [Required(ErrorMessage = "O Código da caixa deve ser preenchido", AllowEmptyStrings = false)]
+        public int Caixa { get; set; }
+
 
         [Required(ErrorMessage = "Selecione uma categoria", AllowEmptyStrings = false)]
         [Display(Name = "Categoria")]

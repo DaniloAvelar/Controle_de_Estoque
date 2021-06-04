@@ -2,14 +2,16 @@
 using Controle_de_Estoque.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Controle_de_Estoque.Migrations
 {
     [DbContext(typeof(ControleDeEstoqueDbContext))]
-    partial class ControleDeEstoqueDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210604122129_CaixaArquivo")]
+    partial class CaixaArquivo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

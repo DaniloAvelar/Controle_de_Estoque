@@ -15,7 +15,6 @@ namespace Controle_de_Estoque.Models
         public string NomeProduto { get; set; }
 
         [Display(Name = "Qtde")]
-        //[Required(ErrorMessage = "A quantidade do produto é obrigatória", AllowEmptyStrings = false)]
         [Required(AllowEmptyStrings = false)]
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "A quantidade do produto deve ser maior que '0'")]
         public int QtdeProduto { get; set; }
@@ -23,6 +22,10 @@ namespace Controle_de_Estoque.Models
         [Display(Name = "Descrição")]
         [Required(ErrorMessage = "A descrição do produto é obrigatória", AllowEmptyStrings = false)]
         public string DescricaoProduto { get; set; }
+
+        [Display(Name = "Caixa")]
+        [Required(ErrorMessage = "O Código da caixa deve ser preenchido", AllowEmptyStrings = false)]
+        public int Caixa { get; set; }
 
         //[ForeignKey("Categoria")]
         public int IdCategoria { get; set; }
