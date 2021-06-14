@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Controle_de_Estoque.Data;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Controle_de_Estoque
 {
@@ -26,6 +27,17 @@ namespace Controle_de_Estoque
             services.AddDbContext<ControleDeEstoqueDbContext>(options =>
                 options.UseMySql(mySqlConnection,
                 ServerVersion.AutoDetect(mySqlConnection)));
+
+
+            //Configurando e Habilitando as Sessions
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
 
             services.AddControllersWithViews();
         }

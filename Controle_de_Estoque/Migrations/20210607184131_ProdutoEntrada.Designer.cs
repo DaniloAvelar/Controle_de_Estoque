@@ -3,14 +3,16 @@ using System;
 using Controle_de_Estoque.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Controle_de_Estoque.Migrations
 {
     [DbContext(typeof(ControleDeEstoqueDbContext))]
-    partial class ControleDeEstoqueDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210607184131_ProdutoEntrada")]
+    partial class ProdutoEntrada
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace Controle_de_Estoque.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("IdProduto")
+                    b.Property<int?>("ProdutoIdProduto")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("dataEntrada")
@@ -51,7 +53,7 @@ namespace Controle_de_Estoque.Migrations
 
                     b.HasKey("EntradaId");
 
-                    b.HasIndex("IdProduto");
+                    b.HasIndex("ProdutoIdProduto");
 
                     b.HasIndex("usuarioId");
 
@@ -71,9 +73,6 @@ namespace Controle_de_Estoque.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("EntradaId")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdCategoria")
                         .HasColumnType("int");
 
@@ -85,9 +84,6 @@ namespace Controle_de_Estoque.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("IdProduto");
-
-                    b.HasIndex("EntradaId")
-                        .IsUnique();
 
                     b.HasIndex("IdCategoria");
 
@@ -140,9 +136,7 @@ namespace Controle_de_Estoque.Migrations
                 {
                     b.HasOne("Controle_de_Estoque.Models.Produto", "Produto")
                         .WithMany()
-                        .HasForeignKey("IdProduto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProdutoIdProduto");
 
                     b.HasOne("Controle_de_Estoque.Models.Usuario", "Usuario")
                         .WithMany("Entrada")
@@ -157,12 +151,6 @@ namespace Controle_de_Estoque.Migrations
 
             modelBuilder.Entity("Controle_de_Estoque.Models.Produto", b =>
                 {
-                    b.HasOne("Controle_de_Estoque.Models.Entrada", "Entrada")
-                        .WithOne()
-                        .HasForeignKey("Controle_de_Estoque.Models.Produto", "EntradaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Controle_de_Estoque.Models.Categoria", "Categoria")
                         .WithMany("Produtos")
                         .HasForeignKey("IdCategoria")
@@ -170,8 +158,6 @@ namespace Controle_de_Estoque.Migrations
                         .IsRequired();
 
                     b.Navigation("Categoria");
-
-                    b.Navigation("Entrada");
                 });
 
             modelBuilder.Entity("Controle_de_Estoque.Models.Saida", b =>

@@ -3,14 +3,16 @@ using System;
 using Controle_de_Estoque.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Controle_de_Estoque.Migrations
 {
     [DbContext(typeof(ControleDeEstoqueDbContext))]
-    partial class ControleDeEstoqueDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210608142303_IDEntrada-TProduto")]
+    partial class IDEntradaTProduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

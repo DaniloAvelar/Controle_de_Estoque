@@ -32,5 +32,14 @@ namespace Controle_de_Estoque.Models
 
         [ForeignKey("IdCategoria")]
         public virtual Categoria Categoria { get; set; }
+
+        //public List<Entrada> Entradas { get; set; }
+
+        //[ForeignKey("EntradaId")]
+        public Entrada Entrada { get; set; }
+
+        [NotMapped]
+        public string motivoEntrada { get; set; }
+
     }
 }

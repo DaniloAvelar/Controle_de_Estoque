@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Controle_de_Estoque.Migrations
 {
     [DbContext(typeof(ControleDeEstoqueDbContext))]
-    [Migration("20210602135220_Tentativa")]
-    partial class Tentativa
+    [Migration("20210604200045_Atualizado")]
+    partial class Atualizado
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,14 +35,18 @@ namespace Controle_de_Estoque.Migrations
             modelBuilder.Entity("Controle_de_Estoque.Models.Produto", b =>
                 {
                     b.Property<int>("IdProduto")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("IdCategoria")
+                    b.Property<int>("Caixa")
                         .HasColumnType("int");
 
                     b.Property<string>("DescricaoProduto")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("IdCategoria")
+                        .HasColumnType("int");
 
                     b.Property<string>("NomeProduto")
                         .IsRequired()
@@ -51,7 +55,7 @@ namespace Controle_de_Estoque.Migrations
                     b.Property<int>("QtdeProduto")
                         .HasColumnType("int");
 
-                    b.HasKey("IdProduto", "IdCategoria");
+                    b.HasKey("IdProduto");
 
                     b.HasIndex("IdCategoria");
 

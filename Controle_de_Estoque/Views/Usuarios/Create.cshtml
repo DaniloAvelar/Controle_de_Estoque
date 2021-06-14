@@ -1,0 +1,77 @@
+﻿@model Controle_de_Estoque.Models.Usuario
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h1>Cadastrar novo usuário</h1>
+
+@*<h4>Usuario</h4>*@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="usuarioNome" class="control-label"></label>
+                <input asp-for="usuarioNome" class="form-control" placeholder="Como devo te chamar?" />
+                <span asp-validation-for="usuarioNome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="usuarioEmail" class="control-label"></label>
+                <input asp-for="usuarioEmail" class="form-control" placeholder="Seu melhor email" />
+                <span asp-validation-for="usuarioEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Senha" class="control-label"></label>
+                <input asp-for="Senha" type="password" class="form-control" placeholder="Cadastre uma senha forte" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Escolha seu Avatar</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            <br />
+            <div class="form-group">
+                @*<div class="col-md-offset-2 col-md-10">*@
+                <input type="submit" value="Cadastrar" class="btn btn-success" />
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Usuarios")'">Cancelar</button>
+                @*@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })*@
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div class="login-form">
+        <form action="/examples/actions/confirmation.php" method="post">
+            <div class="avatar">
+                <img src="/examples/images/avatar.png" alt="Avatar">
+            </div>
+            <h2 class="text-center">Member Login</h2>
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+            </div>
+            <div class="bottom-action clearfix">
+                <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+                <a href="#" class="float-right">Forgot Password?</a>
+            </div>
+        </form>
+        <p class="text-center small">Don't have an account? <a href="#">Sign up here!</a></p>
+    </div>*@
+
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

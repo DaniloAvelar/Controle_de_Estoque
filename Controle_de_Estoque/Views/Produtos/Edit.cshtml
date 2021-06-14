@@ -9,7 +9,8 @@
 </div>
 <br />
 
-@using (Html.BeginForm())
+@*@using (Html.BeginForm("Edit"))*@
+@using (Html.BeginForm("Edit", "Produtos", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
 {
     @Html.AntiForgeryToken()
 
@@ -48,6 +49,12 @@
                 <button type="button" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="right" title="A Quantidade digitada deve ser maior que '0'" style="border-radius: 50%;">
                     !
                 </button>
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(m => m.Entrada.motivoEntrada)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.TextAreaFor(m => m.motivoEntrada)
             </dd>
         </dl>
 

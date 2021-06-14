@@ -11,6 +11,9 @@ namespace Controle_de_Estoque.Data
         }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Entrada> Entradas { get; set; }
+        public DbSet<Saida> Saidas { get; set; }
 
     }
 }

@@ -26,3 +26,11 @@ Projeto Controle_de_Estoque
 - Criação do método de calculo e geração de Nº da Caixa automaticamente, seguindo um sequencial
 - Criação de alerta para impressão da etiqueta na view (Create)
 
+- Criação da Classe (Saida) Model
+- Criação da Classe (Entrada) Model
+- Criação da Classe (Usuario) Model
+
+- Criação do Controler [UsuariosController]
+- Criação automática das Views [Create - Details - Edit - Delete] para o Model Usuario
+
+

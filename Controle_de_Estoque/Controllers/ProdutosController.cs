@@ -1,7 +1,11 @@
 ﻿using Controle_de_Estoque.Data;
 using Controle_de_Estoque.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,15 +22,16 @@ namespace Controle_de_Estoque.Controllers
         // GET: Produtos
         public async Task<IActionResult> Index()
         {
-            //ViewBag.Categorias = _context.Categorias;
+
             return View(await _context.Produtos.Include(a => a.Categoria).ToListAsync());
+
+
         }
 
         public ActionResult Create()
         {
             ViewBag.Categorias = _context.Categorias;
             var model = new ProdutoViewModel();
-
             // Sequencial Nº Caixa Arquivo
             var maiorNumero = _context.Produtos.Max(c => c.Caixa);
             var idCaixa = 22000;
@@ -46,7 +51,6 @@ namespace Controle_de_Estoque.Controllers
 
             model.Caixa = nCaixa;
             ViewBag.nCaixa = nCaixa;
-
             // ==========================
 
             return View(model);
@@ -99,21 +103,33 @@ namespace Controle_de_Estoque.Controllers
         //POST/Edit/Produto:
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(include: "IdProduto,NomeProduto,QtdeProduto,DescricaoProduto,IdCategoria")] Produto model)
+        public ActionResult Edit([Bind(include: "IdProduto,NomeProduto,QtdeProduto,DescricaoProduto,IdCategoria,motivoEntrada")] Produto model)
         {
+            //var entrada = new Entrada();
+
             if (model.IdProduto != 0)
             {
                 var produto = _context.Produtos.Find(model.IdProduto);
+
+                var entrada = new Entrada();
 
                 if (produto == null)
                 {
                     return BadRequest("Requisição Invalida, ID do Produto não encontrado");
                 }
 
-                if(model.QtdeProduto > 0)
+                if (model.QtdeProduto > 0)
                 {
-                    var prodBD= produto.QtdeProduto;
+                    var prodBD = produto.QtdeProduto;
                     var prodAdd = model.QtdeProduto;
+
+                    //Entrada Model ================
+                    var dataIn = DateTime.Now;
+                    entrada.dataEntrada = dataIn;
+                    entrada.motivoEntrada = model.motivoEntrada;
+                    entrada.usuarioId = 1;
+                    entrada.IdProduto = model.IdProduto;
+                    //================================
 
                     produto.QtdeProduto = prodBD + prodAdd;
                 }
@@ -121,7 +137,8 @@ namespace Controle_de_Estoque.Controllers
                 //produto.NomeProduto = model.NomeProduto;
                 //produto.DescricaoProduto = produto.DescricaoProduto;
                 //produto.IdCategoria = model.IdCategoria;
-
+                var EntradaIn = _context.Entradas;
+                EntradaIn.Add(entrada);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -134,7 +151,7 @@ namespace Controle_de_Estoque.Controllers
         [HttpGet("Produtos/Saida/{id}")]
         public IActionResult Saida(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return BadRequest("Requisição Invalida, ID não encontrado");
             }
@@ -182,10 +199,61 @@ namespace Controle_de_Estoque.Controllers
             return View(model);
         }
 
+
+        // GET: Produtos/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            //var produto = await _context.Produtos.FirstOrDefaultAsync(m => m.IdProduto == id);
+
+            var item = _context.Produtos
+                        .Include(i => i.Categoria)
+                        .FirstOrDefault(x => x.IdProduto == id);
+
+            var motivo = (from a in _context.Entradas
+                          orderby a.dataEntrada descending
+                          where a.IdProduto == id
+                          select new { a.motivoEntrada, a.dataEntrada });
+
+            Dictionary<DateTime, string> lista = new Dictionary<DateTime, string>();
+            
+            foreach(var m in motivo)
+            {
+                lista.Add(m.dataEntrada, m.motivoEntrada);
+            }
+
+            //lista.Add("item1", "value1");
+            //lista.Add("item2", "value2");
+
+            ViewBag.motivos = lista;
+
+
+
+            //var motivo = (from a in _context.Entradas
+            //              orderby a.dataEntrada descending
+            //              select new {a.motivoEntrada, a.dataEntrada });
+
+            //ViewBag.motivos = motivo.ToString();
+
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+           //produto = await _context.Categorias.Include(m => m.IdCategoria == id));
+
+            return View(item);
+        }
+
         //Get: Produto/Delete/5
         public ActionResult Delete(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return BadRequest("Requisição Invalida, ID do Produto não encontrado");
             }
