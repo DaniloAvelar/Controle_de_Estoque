@@ -41,5 +41,11 @@ namespace Controle_de_Estoque.Models
         [NotMapped]
         public string motivoEntrada { get; set; }
 
+        public virtual Saida Saida { get; set; }
+
+        [NotMapped]
+        public string motivoSaida { get; set; }
+
+
     }
 }

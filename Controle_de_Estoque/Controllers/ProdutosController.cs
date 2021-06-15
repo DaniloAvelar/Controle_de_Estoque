@@ -173,11 +173,12 @@ namespace Controle_de_Estoque.Controllers
         //POST: Produto/saida/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Saida([Bind(include: "IdProduto,NomeProduto,QtdeProduto,DescricaoProduto,IdCategoria")] Produto model)
+        public ActionResult Saida([Bind(include: "IdProduto,NomeProduto,QtdeProduto,DescricaoProduto,IdCategoria,motivoSaida")] Produto model)
         {
             if (model.IdProduto != 0)
             {
                 var produto = _context.Produtos.Find(model.IdProduto);
+                var saida = new Saida();
 
                 if (produto == null)
                 {
@@ -189,8 +190,18 @@ namespace Controle_de_Estoque.Controllers
                     var prodBD = produto.QtdeProduto;
                     var prodAdd = model.QtdeProduto;
 
+                    //Saida Model ================
+                    var dataOut = DateTime.Now;
+                    saida.dataSaida = dataOut;
+                    saida.motivoSaida = model.motivoSaida;
+                    saida.usuarioId = 1;
+                    saida.IdProduto = model.IdProduto;
+                    //================================
+
                     produto.QtdeProduto = prodBD - prodAdd;
                 }
+                var SaidaOut = _context.Saidas;
+                SaidaOut.Add(saida);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -214,38 +225,41 @@ namespace Controle_de_Estoque.Controllers
                         .Include(i => i.Categoria)
                         .FirstOrDefault(x => x.IdProduto == id);
 
-            var motivo = (from a in _context.Entradas
+            // =========== Retorna a lista de entradas para uma viewBag =====================
+            var entradaIn = (from a in _context.Entradas
                           orderby a.dataEntrada descending
                           where a.IdProduto == id
                           select new { a.motivoEntrada, a.dataEntrada });
 
-            Dictionary<DateTime, string> lista = new Dictionary<DateTime, string>();
+            Dictionary<DateTime, string> listain = new Dictionary<DateTime, string>();
             
-            foreach(var m in motivo)
+            foreach(var m in entradaIn)
             {
-                lista.Add(m.dataEntrada, m.motivoEntrada);
+                listain.Add(m.dataEntrada, m.motivoEntrada);
             }
 
-            //lista.Add("item1", "value1");
-            //lista.Add("item2", "value2");
+            ViewBag.motivoin = listain;
 
-            ViewBag.motivos = lista;
+            // =========== Retorna a lista de Saidas para uma viewBag =====================
+            var saidaout = (from s in _context.Saidas
+                             orderby s.dataSaida descending
+                             where s.IdProduto == id
+                             select new { s.motivoSaida, s.dataSaida });
 
+            Dictionary<DateTime, string> listaout = new Dictionary<DateTime, string>();
 
+            foreach (var m in saidaout)
+            {
+                listaout.Add(m.dataSaida, m.motivoSaida);
+            }
 
-            //var motivo = (from a in _context.Entradas
-            //              orderby a.dataEntrada descending
-            //              select new {a.motivoEntrada, a.dataEntrada });
-
-            //ViewBag.motivos = motivo.ToString();
+            ViewBag.motivoout = listaout;
 
 
             if (item == null)
             {
                 return NotFound();
             }
-
-           //produto = await _context.Categorias.Include(m => m.IdCategoria == id));
 
             return View(item);
         }

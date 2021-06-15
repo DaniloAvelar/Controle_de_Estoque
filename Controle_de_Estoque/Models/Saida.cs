@@ -14,5 +14,9 @@ namespace Controle_de_Estoque.Models
         [ForeignKey("Usuario")]
         public int usuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }
+
+        [ForeignKey("Produto")]
+        public int IdProduto { get; set; }
+        public virtual Produto Produto { get; set; }
     }
 }

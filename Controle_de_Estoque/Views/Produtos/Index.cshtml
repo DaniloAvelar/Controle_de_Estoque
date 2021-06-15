@@ -49,9 +49,9 @@
             <td>@Html.DisplayFor(modelItem => item.Caixa)</td>
             <td align="right">
 
-                <button type="button" class="btn btn-success btn-sm" onclick="location.href='@Url.Action("Edit", "Produtos", new { id = item.IdProduto })'">Entrada</button>   |
-                <button type="button" class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("Saida", "Produtos", new { id = item.IdProduto })'">Saída</button>   |
-                <button type="button" class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("Details", "Produtos", new { id = item.IdProduto })'">Detalhes</button>   |
+                <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='@Url.Action("Edit", "Produtos", new { id = item.IdProduto })'">Entrada</button>   |
+                <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='@Url.Action("Saida", "Produtos", new { id = item.IdProduto })'">Saída</button>   |
+                <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='@Url.Action("Details", "Produtos", new { id = item.IdProduto })'">Detalhes</button>   |
                 <button type="button" class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", "Produtos", new { id = item.IdProduto })'">Excluir</button>
 
             </td>
