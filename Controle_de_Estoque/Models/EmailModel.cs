@@ -19,5 +19,8 @@ namespace Controle_de_Estoque.Models
 
         [Required, Display(Name = "Solicitante")]
         public string Solicitante { get; set; }
+
+        public string ID { get; set; }
+
     }
 }

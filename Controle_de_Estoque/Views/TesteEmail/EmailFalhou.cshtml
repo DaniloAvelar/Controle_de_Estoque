@@ -1,8 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "EmailFalhou";
+    ViewData["Title"] = "Email Falhou";
 }
+<div class="alert alert-danger" role="alert">
+    <h2>Sua solicitação falhou, tente novamente ...</h2>
+</div>
 <br />
-<h1>Email - Gmail</h1>
-<hr />
-<h2>O envio do email FALHOU....</h2>
-<br />
+<button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Index", "Home")'">Voltar a tela Inicial</button>

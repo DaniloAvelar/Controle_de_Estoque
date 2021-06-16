@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "EmailEnviado";
+    ViewData["Title"] = "Email Enviado";
 }
+<div class="alert alert-success" role="alert">
+    <h2>Sua solicitação foi enviada com sucesso...</h2>
+</div>
 <br />
-<h1>Email - Gmail</h1>
-<hr />
-<h2>Seu email foi enviado com sucesso...</h2>
-<br />
+<button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Index", "Home")'">Voltar a tela Inicial</button>
 @*<img src="~/images/soalegria.gif" />*@

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Controle_de_Estoque.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +18,11 @@ namespace Controle_de_Estoque.Services
         }
         public EmailSettings _emailSettings { get; }
 
-        public Task SendEmailAsync(string email, string subject, string solicitante, string message)
+        public Task SendEmailAsync(string email, string subject, string solicitante, string message, string ID)
         {
             try
             {
-                Execute(email, subject, solicitante, message).Wait();
+                Execute(email, subject, solicitante, message, ID).Wait();
                 return Task.FromResult(0);
             }
             catch (Exception)
@@ -30,7 +32,7 @@ namespace Controle_de_Estoque.Services
             //throw new NotImplementedException();
         }
 
-        public async Task Execute(string email, string subject, string solicitante, string message)
+        public async Task Execute(string email, string subject, string solicitante, string message, string ID)
         {
             try
             {
@@ -41,13 +43,16 @@ namespace Controle_de_Estoque.Services
                     From = new MailAddress(_emailSettings.UsernameEmail, "Solicitação de Peças")
                 };
 
+                //var produto = new Produto();
+
                 mail.To.Add(new MailAddress(toEmail));
                 //mail.CC.Add(new MailAddress(_emailSettings.CcEmail));
                 //mail.Subject = "Beauty Home" + subject;
                 mail.Subject = subject;
-                mail.Body = "<h4>Uma solicitação foi feita através do sistema [Estoque]</h4><br />";
+                mail.Body = "<h4>Uma solicitação foi feita através do sistema [Estoque]</h4><br /><hr>";
+                mail.Body += "<strong>Item Solicitado: </strong>" + ID + "<br /><br />";
                 mail.Body += "<strong>Solicitante: </strong>" + solicitante + "<br /><br />";
-                mail.Body += "<strong>Solicitacao: </strong>" + message;
+                mail.Body += "<strong>Motivo da Solicitação: </strong>" + message;
                 mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;
 

@@ -7,6 +7,6 @@ namespace Controle_de_Estoque.Services
 {
     public interface IEmailSender
     {
-        Task SendEmailAsync(string email, string subject, string solicitante, string message);
+        Task SendEmailAsync(string email, string subject, string solicitante, string message, string idproduto);
     }
 }

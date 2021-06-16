@@ -9,7 +9,6 @@
     @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
 </div>
 <br />
-
 <table class="table table-bordered table-light">
     <tr>
         <th>@Html.DisplayNameFor(model => model.Categoria.NomeCategoria)</th>
@@ -20,14 +19,22 @@
 
     @foreach (var item in Model)
     {
+
+
         if (item.QtdeProduto >= 3)
         {
             <tr>
                 @*<td>@ViewBag.Categorias</td>*@
+                @*@Url.Action("TesteEmailController", "TesteEnvioEmail", new { @id = item.IdProduto });*@
                 <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
                 <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
                 <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
                 <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+                <td>
+                    @*<a asp-area="" asp-controller="TesteEmail" asp-action="EnviaEmail\?P1=@item.IdProduto">Solicitar</a>*@
+                    <input type="button" class="btn btn-info" title="Solicitar" value="Solicitar" onclick="location.href='@Url.Action( "EnviaEmail","TesteEmail", new { ID = @item.NomeProduto })'" />
+                </td>
+
                 @*<td>
                         @Html.ActionLink("Editar", "Edit", new { id = item.IdProduto }) |
                         @Html.ActionLink("Detalhes", "Details", new { id = item.IdProduto }) |
@@ -39,14 +46,17 @@
         {
             <tr class="table-danger">
                 @*<td>@ViewBag.Categorias</td>*@
+                @*@Url.Action("TesteEmailController", "TesteEnvioEmail", new { @id = item.IdProduto });*@
                 <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
                 <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
                 <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
                 <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+                <td>
+                    @*<a asp-area="" asp-controller="TesteEmail" asp-action="EnviaEmail">Solicitar</a>*@
+                    <input type="button" class="btn btn-info" title="Solicitar" value="Solicitar" onclick="location.href='@Url.Action( "EnviaEmail","TesteEmail", new { ID = @item.NomeProduto })'" />
+                </td>
             </tr>
         }
     }
+</table>
 
-        </table>
-
-<a asp-area="" asp-controller="TesteEmail" asp-action="EnviaEmail">Enviar Emil</a>
