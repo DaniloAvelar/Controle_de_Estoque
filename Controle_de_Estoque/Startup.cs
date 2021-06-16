@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Controle_de_Estoque.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Controle_de_Estoque.Services;
 
 namespace Controle_de_Estoque
 {
@@ -38,6 +39,8 @@ namespace Controle_de_Estoque
                 options.Cookie.IsEssential = true;
             });
 
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.AddTransient<IEmailSender, AuthMessageSender>();
 
             services.AddControllersWithViews();
         }

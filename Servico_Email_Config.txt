@@ -1,0 +1,36 @@
+*** Configurar serviço de Email ***
+
+- (appsetings.json) ========================================================
+
+EmailSettings": {
+    "PrimaryDomain": "mail.dominio.com.br",
+    "PrimaryPort": "587",
+    "UsernameEmail": "email@dominio.com.br",
+    "UsernamePassword": "********",
+    "FromEmail": "fromEmail",
+    "ToEmail": "email@dominio.com.br"
+    //"CcEmail": "email@dominio.com.br"
+}
+
+- (Startup.cs) ==============================================================
+
+::Registrar os serviços
+
+services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+services.AddTransient<IEmailSender, AuthMessageSender>();
+
+
+- (Services/AuthMessageSender.cs) ============================================
+
+ MailMessage mail = new MailMessage()
+                {
+                    From = new MailAddress(_emailSettings.UsernameEmail, "Titulo Que Vai Chegar na CX IN")
+                };
+
+                mail.To.Add(new MailAddress(toEmail));
+                //mail.CC.Add(new MailAddress(_emailSettings.CcEmail));
+
+                mail.Subject = "Beauty Home" + subject;
+                mail.Body = message;
+                mail.IsBodyHtml = true;
+                mail.Priority = MailPriority.High;

@@ -10,7 +10,7 @@
 </div>
 <br />
 
-<table class="table table-bordered table-dark">
+<table class="table table-bordered table-light">
     <tr>
         <th>@Html.DisplayNameFor(model => model.Categoria.NomeCategoria)</th>
         <th>@Html.DisplayNameFor(model => model.NomeProduto) </th>
@@ -20,17 +20,33 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            @*<td>@ViewBag.Categorias</td>*@
-            <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
-            <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
-            <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
-            <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
-            @*<td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.IdProduto }) |
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.IdProduto }) |
-                    @Html.ActionLink("Deletar", "Delete", new { id = item.IdProduto })
-                </td>*@
-        </tr>
+        if (item.QtdeProduto >= 3)
+        {
+            <tr>
+                @*<td>@ViewBag.Categorias</td>*@
+                <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
+                <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
+                <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
+                <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+                @*<td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.IdProduto }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.IdProduto }) |
+                        @Html.ActionLink("Deletar", "Delete", new { id = item.IdProduto })
+                    </td>*@
+            </tr>
+        }
+        else
+        {
+            <tr class="table-danger">
+                @*<td>@ViewBag.Categorias</td>*@
+                <td>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</td>
+                <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
+                <td>@Html.DisplayFor(modelItem => item.DescricaoProduto)</td>
+                <td>@Html.DisplayFor(modelItem => item.QtdeProduto)</td>
+            </tr>
+        }
     }
-</table>
+
+        </table>
+
+<a asp-area="" asp-controller="TesteEmail" asp-action="EnviaEmail">Enviar Emil</a>

@@ -35,3 +35,5 @@ Projeto Controle_de_Estoque
 - Criação do módulo de logs de entrada (A cada produto que entra, o mesmo guarda um log no sistema)
 - Inserção do modulo de logs de retirada (A cada retirada de item do estoque, o mesmo grava na tabela retirada, mantendo assim um hiostorico)
 
+- Solcitar periférico via email para o setor T.I
+- 

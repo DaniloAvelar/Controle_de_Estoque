@@ -8,7 +8,11 @@ namespace Controle_de_Estoque.Models
     {
         [Key]
         public int SaidaId { get; set; }
+
+        [Display(Name = "Data Saída")]
         public DateTime dataSaida { get; set; }
+
+        [Display(Name = "Motivo Saída")]
         public string motivoSaida { get; set; }
 
         [ForeignKey("Usuario")]
