@@ -20,12 +20,18 @@ namespace Controle_de_Estoque.Controllers
         }
 
         // GET: Produtos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string pesquisar)
         {
+            var prods = from p in _context.Produtos
+                        select p;
 
-            return View(await _context.Produtos.Include(a => a.Categoria).ToListAsync());
+            if (!String.IsNullOrEmpty(pesquisar))
+            {
+                prods = prods.Where(p => p.NomeProduto.Contains(pesquisar));
+            }
 
-
+            return View(prods);
+            //return View(await _context.Produtos.Include(a => a.Categoria).ToListAsync());
         }
 
         public ActionResult Create()
